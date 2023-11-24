@@ -17,7 +17,7 @@
                 :class="{ 'active': isButtonActive[3] }" 
             />
             <SimonButton 
-                color="yellow" 
+                color="orange" 
                 @click.native="userStep(4)" 
                 :class="{ 'active': isButtonActive[4] }" 
             />
@@ -86,7 +86,7 @@ export default {
             3: false,
             4: false,
         },
-        stepTime: 0,
+        stepTime: 1500,
     }),
 
     methods: {
@@ -159,7 +159,7 @@ export default {
     display: flex;
     column-gap: 40px;
     justify-content: center;
-
+    
     .game-buttons {
         width: 31vw;
         display: flex;

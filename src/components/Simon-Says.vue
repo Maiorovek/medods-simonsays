@@ -161,11 +161,11 @@ export default {
     justify-content: center;
 
     .game-buttons {
-        width: 420px;
+        width: 31vw;
         display: flex;
         flex-wrap: wrap;
-        row-gap: 20px;
-        column-gap: 20px;
+        row-gap: 1vw;
+        column-gap: 1vw;
     }
 
     .game-mode {

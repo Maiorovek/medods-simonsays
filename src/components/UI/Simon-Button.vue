@@ -20,8 +20,8 @@ export default {
 
 <style scoped>
 .simon-button {
-    height: 200px;
-    width: 200px;
+    height: 15vw;
+    width: 15vw;
     transition: opacity .1s ease;
     opacity: .5;
 }

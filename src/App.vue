@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <CustomHeader/>
-    <SimonSays/>
+    <CustomHeader />
+    <SimonSays />
   </div>
 </template>
 
@@ -15,8 +15,8 @@ export default {
   components: {
     SimonSays,
     CustomHeader,
-}
+  }
 }
 </script>
 
-<style> </style>
+<style></style>

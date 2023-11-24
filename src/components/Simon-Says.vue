@@ -1,10 +1,26 @@
 <template>
     <div class="simon-says">
         <div class="game-buttons">
-            <SimonButton color="red" @click.native="userStep(1)" :class="{ 'active': isButtonActive[1] }" />
-            <SimonButton color="blue" @click.native="userStep(2)" :class="{ 'active': isButtonActive[2] }" />
-            <SimonButton color="green" @click.native="userStep(3)" :class="{ 'active': isButtonActive[3] }" />
-            <SimonButton color="yellow" @click.native="userStep(4)" :class="{ 'active': isButtonActive[4] }" />
+            <SimonButton 
+                color="red" 
+                @click.native="userStep(1)" 
+                :class="{ 'active': isButtonActive[1] }" 
+            />
+            <SimonButton 
+                color="blue" 
+                @click.native="userStep(2)" 
+                :class="{ 'active': isButtonActive[2] }" 
+            />
+            <SimonButton 
+                color="green" 
+                @click.native="userStep(3)" 
+                :class="{ 'active': isButtonActive[3] }" 
+            />
+            <SimonButton 
+                color="yellow" 
+                @click.native="userStep(4)" 
+                :class="{ 'active': isButtonActive[4] }" 
+            />
         </div>
         <div class="game-settings">
             <h3> Рануд № {{ curentRound }}</h3>
@@ -12,13 +28,34 @@
             <div class="game-mode">
                 <h4> Выбор сложноси </h4>
                 <div>
-                    <input type="radio" name="mode" value="1500" v-model="stepTime" :disabled="isGameStarted"> Легкая
+                    <input 
+                        type="radio" 
+                        name="mode" 
+                        value="1500" 
+                        v-model="stepTime" 
+                        :disabled="isGameStarted"
+                    > 
+                    Легкая
                 </div>
                 <div>
-                    <input type="radio" name="mode" value="1000" v-model="stepTime" :disabled="isGameStarted"> Нормальная
+                    <input 
+                        type="radio" 
+                        name="mode" 
+                        value="1000" 
+                        v-model="stepTime" 
+                        :disabled="isGameStarted"
+                    > 
+                    Нормальная
                 </div>
                 <div>
-                    <input type="radio" name="mode" value="400" v-model="stepTime" :disabled="isGameStarted"> Сложная
+                    <input 
+                        type="radio" 
+                        name="mode" 
+                        value="400" 
+                        v-model="stepTime" 
+                        :disabled="isGameStarted"
+                    > 
+                    Сложная
                 </div>
             </div>
         </div>
@@ -55,7 +92,6 @@ export default {
     methods: {
         async startGame() {
             if (this.stepTime != 0) {
-                this.isGameLost = false;
                 this.order = [];
                 this.userOrder = [];
                 this.curentRound = 0;
@@ -69,6 +105,7 @@ export default {
                 alert('Выберете сложность')
             }
         },
+        
         async userStep(button) {
             if (this.step === 'user' && this.isGameStarted) {
                 let audio = new Audio(button + '.mp3');
@@ -77,24 +114,26 @@ export default {
 
                 if (this.userOrder.length === this.curentRound) {
                     for (let i = 0; i < this.curentRound; i++) {
-                        if (this.userOrder[i] === this.order[i]) {
-                            console.log('да');
-                        }
-                        else {
+                        if (!(this.userOrder[i] === this.order[i])) {
                             this.isGameStarted = false;
-                            this.isGameLost = true;
-                            alert('ты проиграл');
+                            alert('Вы проиграли');
                             break;
                         }
                     }
-                    this.step = 'pc'
-                    this.pcStep();
+                    if (this.curentRound < 20) {
+                        this.step = 'pc'
+                        this.pcStep();
+                    } else {
+                        alert('Вы победили!')
+                    }
                 }
             }
         },
+
         timeout(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         },
+
         async pcStep() {
             if (this.isGameStarted) {
                 await this.timeout(800)
@@ -113,7 +152,6 @@ export default {
         },
     },
 }
-
 </script>
 
 <style scoped>

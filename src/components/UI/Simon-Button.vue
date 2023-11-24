@@ -1,6 +1,8 @@
 <template>
-    <div class="simon-button" :style="{ backgroundColor: color }">
-    </div>
+    <div 
+        class="simon-button" 
+        :style="{ backgroundColor: color }"
+    />
 </template>
 
 <script>
@@ -13,7 +15,6 @@ export default {
             required: true,
         },
     },
-
 }
 </script>
 
@@ -29,6 +30,7 @@ export default {
     transition: opacity .1s ease;
     opacity: 1;
 }
+
 .active {
     transition: opacity .1s ease;
     opacity: 1;
